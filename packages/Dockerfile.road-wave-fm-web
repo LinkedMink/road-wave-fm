@@ -1,0 +1,44 @@
+### Setup Dev Environment
+FROM base AS dependencies
+
+RUN --mount=type=cache,target=/home/node/.local/share/pnpm/store,uid=1000,gid=1000 \
+    --mount=type=bind,source=package.json,target=package.json \
+    --mount=type=bind,source=pnpm-lock.yaml,target=pnpm-lock.yaml \
+    pnpm install --frozen-lockfile
+
+COPY .browserslistrc tsconfig.json ./
+COPY config/webpack* ./config/
+COPY src ./src/
+
+### Image for Dev Container
+FROM dependencies AS watch
+
+EXPOSE 8080/tcp
+HEALTHCHECK CMD netstat -an | grep 8080 > /dev/null; if [ 0 != $? ]; then exit 1; fi;
+
+ENV NODE_OPTIONS="--import tsx" TARGET_ENV=local-dev
+
+CMD [ "pnpx", "webpack", "serve", "--config", "config/webpack.serve.ts" ]
+
+### Build for Deployment
+FROM dependencies AS build
+
+ARG TARGET_ENV=production
+
+RUN NODE_OPTIONS="--import tsx" pnpx webpack --config config/webpack.prod.ts
+
+### Image for Deployment
+FROM alpine:latest AS application
+
+RUN --mount=type=cache,id=apk,target=/var/cache/apk/ \
+    apk add nginx nginx-mod-http-brotli
+
+WORKDIR /usr/share/nginx/html
+
+COPY docker/nginx.conf /etc/nginx/http.d/default.conf
+COPY --from=build /home/node/app/dist/ ./
+
+EXPOSE 80/tcp 443/tcp
+HEALTHCHECK CMD netstat -an | grep 443 > /dev/null; if [ 0 != $? ]; then exit 1; fi;
+
+CMD ["nginx", "-g", "daemon off;"]

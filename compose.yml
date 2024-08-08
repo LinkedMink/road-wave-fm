@@ -1,0 +1,17 @@
+# include:
+#   - path:
+#       - packages/external-idp-user-api/compose.yml
+#       - packages/compose-external-idp-user-api-override.yaml
+#   - path:
+#       - packages/road-wave-fm-rpc/compose.yml
+#       - packages/compose-road-wave-fm-rpc-override.yaml
+#   - path:
+#       - packages/road-wave-fm-web/compose.yml
+#       - packages/compose-road-wave-fm-web-override.yaml
+
+include:
+  - packages/external-idp-user-api/compose.yml
+  - packages/road-wave-fm-rpc/compose.yml
+  - packages/road-wave-fm-web/compose.yml
+
+name: road-wave-fm

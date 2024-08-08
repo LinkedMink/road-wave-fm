@@ -1,0 +1,12 @@
+[submodule "packages/external-idp-user-api"]
+	path = packages/external-idp-user-api
+	url = git@github.com:LinkedMink/external-idp-user-api.git
+	branch = main
+[submodule "packages/road-wave-fm-rpc"]
+	path = packages/road-wave-fm-rpc
+	url = git@github.com:LinkedMink/road-wave-fm-rpc.git
+	branch = main
+[submodule "packages/road-wave-fm-web"]
+	path = packages/road-wave-fm-web
+	url = git@github.com:LinkedMink/road-wave-fm-web.git
+	branch = main

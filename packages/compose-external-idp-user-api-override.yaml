@@ -1,0 +1,14 @@
+services:
+  eiu-api:
+    image: linkedmink/external-idp-user-api:pnpm
+    build:
+      dockerfile: ../Dockerfile.external-idp-user-api
+      additional_contexts:
+        base: docker-image://linkedmink/node-pnpm:latest
+
+  eiu-api-watch:
+    image: linkedmink/external-idp-user-api-watch:pnpm-dev
+    build:
+      dockerfile: ../Dockerfile.external-idp-user-api
+      additional_contexts:
+        base: docker-image://linkedmink/node-pnpm:latest

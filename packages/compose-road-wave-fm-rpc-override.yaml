@@ -1,0 +1,14 @@
+services:
+  rwf-api:
+    image: linkedmink/road-wave-fm-rpc:pnpm
+    build:
+      dockerfile: ../Dockerfile.road-wave-fm-rpc
+      additional_contexts:
+        base: docker-image://linkedmink/node-pnpm:latest
+
+  rwf-api-watch:
+    image: linkedmink/road-wave-fm-rpc-watch:pnpm-dev
+    build:
+      dockerfile: ../Dockerfile.road-wave-fm-rpc
+      additional_contexts:
+        base: docker-image://linkedmink/node-pnpm:latest

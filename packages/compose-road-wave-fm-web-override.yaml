@@ -1,0 +1,14 @@
+services:
+  web:
+    image: linkedmink/road-wave-fm-web:pnpm
+    build:
+      dockerfile: ../Dockerfile.road-wave-fm-web
+      additional_contexts:
+        base: docker-image://linkedmink/node-pnpm:latest
+
+  web-watch:
+    image: linkedmink/road-wave-fm-web-watch:pnpm-dev
+    build:
+      dockerfile: ../Dockerfile.road-wave-fm-web
+      additional_contexts:
+        base: docker-image://linkedmink/node-pnpm:latest
