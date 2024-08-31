@@ -10,3 +10,11 @@
 	path = packages/road-wave-fm-web
 	url = git@github.com:LinkedMink/road-wave-fm-web.git
 	branch = main
+[submodule "packages/node-cli-utilities"]
+	path = packages/node-cli-utilities
+	url = git@github.com:LinkedMink/node-cli-utilities.git
+	branch = main
+[submodule "packages/eip-4361-parser"]
+	path = packages/eip-4361-parser
+	url = git@github.com:LinkedMink/eip-4361-parser.git
+	branch = main

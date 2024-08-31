@@ -1,27 +1,46 @@
 {
-    "name": "road-wave-fm",
-    "version": "0.1.0-0",
-    "description": "Monorepo workspace",
-    "homepage": "https://github.com/LinkedMink/road-wave-fm#readme",
-    "bugs": {
-        "url": "https://github.com/LinkedMink/road-wave-fm/issues",
-        "email": "harlan.sang@linkedmink.net"
-    },
-    "license": "UNLICENSED",
-    "author": {
-        "name": "Harlan Sang",
-        "email": "harlan.sang@linkedmink.net",
-        "url": "https://github.com/LinkedMink"
-    },
-    "funding": {
-        "type": "individual",
-        "url": "https://github.com/sponsors/LinkedMink"
-    },
-    "type": "module",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/LinkedMink/road-wave-fm.git"
-    },
-    "private": true,
-    "packageManager": "pnpm@9.7.0+sha512.dc09430156b427f5ecfc79888899e1c39d2d690f004be70e05230b72cb173d96839587545d09429b55ac3c429c801b4dc3c0e002f653830a420fa2dd4e3cf9cf"
+  "name": "@linkedmink/road-wave-fm",
+  "version": "1.0.0-0",
+  "description": "Links multiple independent repos together that support the Road Wave FM application with utilities to ease developing them together",
+  "homepage": "https://github.com/LinkedMink/road-wave-fm#readme",
+  "bugs": {
+    "url": "https://github.com/LinkedMink/road-wave-fm/issues",
+    "email": "harlan.sang@linkedmink.net"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Harlan Sang",
+    "email": "harlan.sang@linkedmink.net",
+    "url": "https://github.com/LinkedMink"
+  },
+  "funding": {
+    "type": "individual",
+    "url": "https://github.com/sponsors/LinkedMink"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LinkedMink/road-wave-fm.git"
+  },
+  "private": true,
+  "scripts": {
+    "start": "concurrently -c gray,blue,magenta,cyan npm:start:docker:services npm:start:app:*",
+    "start:app:external-idp-user-api": "npm --prefix packages/external-idp-user-api run start",
+    "start:app:road-wave-fm-rpc": "npm --prefix packages/road-wave-fm-rpc run start:no-watch",
+    "start:app:road-wave-fm-web": "npm --prefix packages/road-wave-fm-web run start",
+    "start:docker:dev": "docker compose up --build -- eiu-api-dev rwf-api-dev web-dev",
+    "start:docker:deployed": "docker compose up --build -- eiu-api rwf-api web",
+    "start:docker:services": "docker compose up -d -- postgres valkey mongodb valkey-persist",
+    "install:external-idp-user-api": "cd packages/external-idp-user-api && npm install",
+    "install:road-wave-fm-rpc": "cd packages/road-wave-fm-rpc && npm install",
+    "install:road-wave-fm-web": "cd packages/road-wave-fm-web && npm install",
+    "postinstall": "concurrently -c blue,magenta,cyan npm:install:*",
+    "setup": "concurrently -c blue,magenta npm:start:docker:services npm:setup:*",
+    "setup:external-idp-user-api": "cd packages/external-idp-user-api && npx external-idp-user-cli setup",
+    "setup:road-wave-fm-rpc": "cd packages/road-wave-fm-rpc && npx road-wave-fm-cli setup"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "prettier": "^3.3.3"
+  }
 }

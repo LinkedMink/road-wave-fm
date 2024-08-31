@@ -1,0 +1,10 @@
+services:
+  rwf-api:
+    depends_on:
+      - valkey-persist
+      - eiu-api
+
+  rwf-api-dev:
+    depends_on:
+      - valkey-persist
+      - eiu-api-dev

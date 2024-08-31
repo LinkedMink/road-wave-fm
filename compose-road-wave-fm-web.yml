@@ -1,0 +1,10 @@
+services:
+  web:
+    depends_on:
+      - rwf-api
+      - eiu-api
+
+  web-dev:
+    depends_on:
+      - rwf-api-dev
+      - eiu-api-dev
