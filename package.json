@@ -20,7 +20,7 @@
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "https://github.com/LinkedMink/road-wave-fm.git"
+    "url": "git+https://github.com/LinkedMink/road-wave-fm.git"
   },
   "private": true,
   "scripts": {
@@ -31,6 +31,7 @@
     "start:docker:dev": "docker compose up --build -- eiu-api-dev rwf-api-dev web-dev",
     "start:docker:deployed": "docker compose up --build -- eiu-api rwf-api web",
     "start:docker:services": "docker compose up -d -- postgres valkey mongodb valkey-persist",
+    "build:docker": "docker compose build --push -- eiu-api-dev eiu-api-prod rwf-api-dev rwf-api-prod web-env-development",
     "install:external-idp-user-api": "cd packages/external-idp-user-api && npm install",
     "install:road-wave-fm-rpc": "cd packages/road-wave-fm-rpc && npm install",
     "install:road-wave-fm-web": "cd packages/road-wave-fm-web && npm install",
@@ -40,7 +41,7 @@
     "setup:road-wave-fm-rpc": "cd packages/road-wave-fm-rpc && npx road-wave-fm-cli setup"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2",
+    "concurrently": "^9.0.1",
     "prettier": "^3.3.3"
   }
 }

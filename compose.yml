@@ -1,5 +1,4 @@
 include:
-  - verdaccio/compose.yml
   # - path:
   #     - packages/external-idp-user-api/compose.yml
   #     - compose-external-idp-user-api.yml
