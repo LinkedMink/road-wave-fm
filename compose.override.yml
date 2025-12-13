@@ -1,0 +1,31 @@
+services:
+  rwf-api:
+    depends_on:
+      valkey-persist:
+        condition: service_healthy
+      eiu-api:
+        condition: service_healthy
+        required: false
+  rwf-api-dev:
+    depends_on:
+      valkey-persist:
+        condition: service_healthy
+      eiu-api-dev:
+        condition: service_healthy
+        required: false
+  web:
+    depends_on:
+      rwf-api:
+        condition: service_healthy
+        required: false
+      eiu-api:
+        condition: service_healthy
+        required: false
+  web-dev:
+    depends_on:
+      rwf-api-dev:
+        condition: service_healthy
+        required: false
+      eiu-api-dev:
+        condition: service_healthy
+        required: false

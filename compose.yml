@@ -1,15 +1,6 @@
-include:
-  # - path:
-  #     - packages/external-idp-user-api/compose.yml
-  #     - compose-external-idp-user-api.yml
-  - path:
-      - packages/road-wave-fm-rpc/compose.yml
-      - compose-road-wave-fm-rpc.yml
-  - path:
-      - packages/road-wave-fm-web/compose.yml
-      - compose-road-wave-fm-web.yml
-  - packages/external-idp-user-api/compose.yml
-  # - packages/road-wave-fm-rpc/compose.yml
-  # - packages/road-wave-fm-web/compose.yml
-
 name: road-wave-fm
+
+include:
+  - packages/external-idp-user-api/compose.yml
+  - packages/road-wave-fm-rpc/compose.yml
+  - packages/road-wave-fm-web/compose.yml
