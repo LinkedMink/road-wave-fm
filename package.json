@@ -42,7 +42,7 @@
     "setup:road-wave-fm-rpc": "cd packages/road-wave-fm-rpc && npx road-wave-fm-cli setup"
   },
   "devDependencies": {
-    "concurrently": "^9.0.1",
+    "concurrently": "^10.0.3",
     "prettier": "^3.3.3"
   }
 }
