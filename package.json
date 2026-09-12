@@ -1,6 +1,6 @@
 {
   "name": "@linkedmink/road-wave-fm",
-  "version": "1.0.0-0",
+  "version": "1.0.0",
   "description": "Links multiple independent repos together that support the Road Wave FM application with utilities to ease developing them together",
   "homepage": "https://github.com/LinkedMink/road-wave-fm#readme",
   "bugs": {
